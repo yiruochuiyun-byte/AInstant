@@ -9,6 +9,8 @@ import { fetchHfPapers, fetchHfTrending } from "./huggingface.ts";
 import { fetchGithubTrending } from "./github.ts";
 import { fetchOpenRouter } from "./openrouter.ts";
 import { fetchInbox } from "./inbox.ts";
+import { fetchPageWatch } from "./pagewatch.ts";
+import { fetchProductHunt } from "./producthunt.ts";
 
 type Adapter = (cfg: SourceConfig, db: Db) => Promise<RawItem[]>;
 
@@ -21,6 +23,8 @@ const ADAPTERS: Record<SourceKind, Adapter> = {
   github_trending: fetchGithubTrending,
   openrouter: fetchOpenRouter,
   inbox: fetchInbox,
+  page_watch: (cfg, db) => fetchPageWatch(cfg, db),
+  producthunt: fetchProductHunt,
 };
 
 /** Network-free mode: read fixtures/<source id>.json instead of calling the source. */

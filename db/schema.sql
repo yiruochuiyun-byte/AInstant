@@ -167,3 +167,11 @@ create table if not exists sponsors (
 
 -- Columns added after the first version (create table if not exists does not add them to existing tables).
 alter table events add column if not exists title_locked boolean not null default false;
+
+-- Last seen text of watched pages without a feed (pricing pages, changelogs, news pages).
+create table if not exists page_snapshots (
+  source_id   text primary key references sources(id),
+  hash        text not null,
+  text        text not null,
+  captured_at timestamptz not null default now()
+);

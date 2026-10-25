@@ -34,9 +34,46 @@ export const SOURCES: SourceConfig[] = [
   { id: "gh-trending", kind: "github_trending", name: "GitHub Trending", weight: 1.5, credibility: "media", aiOnly: false },
   { id: "openrouter", kind: "openrouter", name: "OpenRouter Models", weight: 2, credibility: "official", aiOnly: true },
 
+  // Pages without feeds, diffed every run (first fetch only records them). All "verify" until the first real run.
+  { id: "watch-anthropic-news", kind: "page_watch", name: "Anthropic News", url: "https://www.anthropic.com/news", weight: 3, credibility: "official", aiOnly: true },
+  { id: "watch-anthropic-pricing", kind: "page_watch", name: "Anthropic API pricing", url: "https://www.anthropic.com/pricing", weight: 2, credibility: "official", aiOnly: true },
+  { id: "watch-openai-pricing", kind: "page_watch", name: "OpenAI API pricing", url: "https://openai.com/api/pricing/", weight: 2, credibility: "official", aiOnly: true },
+  { id: "watch-gemini-pricing", kind: "page_watch", name: "Gemini API pricing", url: "https://ai.google.dev/gemini-api/docs/pricing", weight: 2, credibility: "official", aiOnly: true },
+  { id: "watch-gemini-changelog", kind: "page_watch", name: "Gemini API changelog", url: "https://ai.google.dev/gemini-api/docs/changelog", weight: 2, credibility: "official", aiOnly: true },
+  { id: "watch-meta-ai-blog", kind: "page_watch", name: "Meta AI Blog", url: "https://ai.meta.com/blog/", weight: 3, credibility: "official", aiOnly: true },
+  { id: "watch-mistral-news", kind: "page_watch", name: "Mistral AI News", url: "https://mistral.ai/news", weight: 2, credibility: "official", aiOnly: true },
+  { id: "watch-xai-news", kind: "page_watch", name: "xAI News", url: "https://x.ai/news", weight: 2, credibility: "official", aiOnly: true },
+  { id: "watch-deepseek-news", kind: "page_watch", name: "DeepSeek API News", url: "https://api-docs.deepseek.com/updates", weight: 3, credibility: "official", aiOnly: true },
+  { id: "watch-deepseek-pricing", kind: "page_watch", name: "DeepSeek API pricing", url: "https://api-docs.deepseek.com/quick_start/pricing", weight: 2, credibility: "official", aiOnly: true },
+
+  // Launches
+  { id: "producthunt", kind: "producthunt", name: "Product Hunt", url: "https://www.producthunt.com/feed", weight: 1, credibility: "media", aiOnly: false },
+
   // Pushed in: Grok bot (X), admin submissions
   { id: "inbox", kind: "inbox", name: "Inbox (Grok / manual)", weight: 2, credibility: "media", aiOnly: true },
 
-  // Chinese platforms via self-hosted RSSHub. Disabled until RSSHUB_URL is set.
-  { id: "zhihu-hot", kind: "rss", name: "知乎热榜", url: `${RSSHUB}/zhihu/hot`, weight: 1, credibility: "media", aiOnly: false, lang: "zh", enabled: !!RSSHUB },
+  // Chinese platforms via self-hosted RSSHub (https://docs.rsshub.app). Disabled until RSSHUB_URL is set.
+  // Check each route against the deployed instance's docs; RSSHub routes change between versions.
+  // Weibo and Xiaohongshu routes need a logged-in cookie configured in RSSHub (WEIBO_COOKIES, XIAOHONGSHU_COOKIE).
+  ...rsshub([
+    { id: "zhihu-hot", name: "知乎热榜", route: "/zhihu/hot", aiOnly: false },
+    // Per-account routes, filled from config/accounts.md (Chinese section) once RSSHub is up:
+    // { id: "weibo-<name>", name: "微博 · <name>", route: "/weibo/user/<uid>", aiOnly: false },
+    // { id: "jike-<name>", name: "即刻 · <name>", route: "/jike/user/<id>", aiOnly: false },
+    // { id: "zhihu-<name>", name: "知乎 · <name>", route: "/zhihu/people/activities/<id>", aiOnly: false },
+  ]),
 ];
+
+function rsshub(routes: { id: string; name: string; route: string; aiOnly: boolean }[]): SourceConfig[] {
+  return routes.map((r) => ({
+    id: r.id,
+    kind: "rss",
+    name: r.name,
+    url: `${RSSHUB}${r.route}`,
+    weight: 1,
+    credibility: "media",
+    aiOnly: r.aiOnly,
+    lang: "zh",
+    enabled: !!RSSHUB,
+  }));
+}

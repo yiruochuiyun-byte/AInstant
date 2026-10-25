@@ -63,3 +63,27 @@ test("parseTrending extracts repo, description and stars today", () => {
   assert.equal(r.engagement, 1234);
   assert.match(r.title, /Open coding model/);
 });
+
+test("page watch: text extraction and added lines ignore markup and noise", async () => {
+  const { pageText, addedLines } = await import("../pipeline/sources/pagewatch.ts");
+  const before = pageText(`<html><head><title>x</title></head><body><script>var a=1</script><h2>Claude Opus 5.5</h2><p>Input $5 / MTok</p><p>© 2026 Anthropic</p></body></html>`);
+  const after = pageText(`<body><h2>Claude Opus 5.5</h2><p>Input $4 / MTok</p><p>© 2027 Anthropic</p><p>Updated: 3 minutes ago</p></body>`);
+  assert.equal(before, "Claude Opus 5.5\nInput $5 / MTok\n© 2026 Anthropic");
+  assert.deepEqual(addedLines(before, after), ["Input $4 / MTok"]);
+});
+
+test("page watch: first fetch records, later changes become items", async () => {
+  const { connect, migrate } = await import("../lib/db.ts");
+  const { syncSources } = await import("../pipeline/ingest.ts");
+  const { fetchPageWatch } = await import("../pipeline/sources/pagewatch.ts");
+  const db = await connect({ memory: true });
+  await migrate(db);
+  const src = { id: "watch-x", kind: "page_watch" as const, name: "X pricing", url: "https://x.dev/pricing", weight: 2, credibility: "official" as const, aiOnly: true };
+  await syncSources(db, [src]);
+  assert.deepEqual(await fetchPageWatch(src, db, "<p>Model A $5</p>"), []);
+  assert.deepEqual(await fetchPageWatch(src, db, "<p>Model A $5</p>"), []);
+  const [item] = await fetchPageWatch(src, db, "<p>Model A $5</p><p>Model B $1</p>");
+  assert.equal(item.title, "X pricing changed: Model B $1");
+  assert.match(item.dedupeKey!, /^https:\/\/x\.dev\/pricing#/);
+  await db.close();
+});

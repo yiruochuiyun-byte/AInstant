@@ -8,7 +8,9 @@ export type SourceKind =
   | "hf_papers"
   | "github_trending"
   | "openrouter"
-  | "inbox";
+  | "inbox"
+  | "page_watch"
+  | "producthunt";
 
 export interface SourceConfig {
   id: string;
