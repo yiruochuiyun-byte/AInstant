@@ -34,6 +34,7 @@ create table if not exists events (
   status         text not null default 'auto', -- auto | pending_review | approved | hidden
   has_controversy boolean not null default false,
   pinned         boolean not null default false,
+  title_locked   boolean not null default false, -- an editor wrote the headline; the pipeline keeps it
   item_count     int not null default 0,
   source_count   int not null default 0,
   first_seen_at  timestamptz not null default now(),
@@ -151,3 +152,18 @@ create table if not exists runs (
   finished_at timestamptz,
   stats       jsonb
 );
+
+-- Paid placements. Always rendered with a "Sponsored" label, never ranked with news.
+create table if not exists sponsors (
+  id         bigserial primary key,
+  lang       text not null,                 -- sold per language edition
+  placement  text not null default 'home',  -- home | newsletter
+  title      text not null,
+  body       text,
+  url        text not null,
+  starts_at  timestamptz not null,
+  ends_at    timestamptz not null
+);
+
+-- Columns added after the first version (create table if not exists does not add them to existing tables).
+alter table events add column if not exists title_locked boolean not null default false;

@@ -1,12 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { canonicalUrl, urlHash } from "../src/lib/url.ts";
-import { decide, sharesEntity } from "../src/pipeline/cluster.ts";
-import { hotness } from "../src/pipeline/rank.ts";
-import { slugify } from "../src/pipeline/events.ts";
-import { parseFeed } from "../src/sources/rss.ts";
-import { parseTrending } from "../src/sources/github.ts";
-import type { SourceConfig } from "../src/types.ts";
+import { canonicalUrl, urlHash } from "../lib/url.ts";
+import { decide, sharesEntity } from "../pipeline/cluster.ts";
+import { hotness } from "../pipeline/rank.ts";
+import { slugify } from "../pipeline/events.ts";
+import { parseFeed } from "../pipeline/sources/rss.ts";
+import { parseTrending } from "../pipeline/sources/github.ts";
+import type { SourceConfig } from "../lib/types.ts";
 
 const cfg: SourceConfig = { id: "t", kind: "rss", name: "t", weight: 1, credibility: "media", aiOnly: true };
 

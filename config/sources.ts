@@ -1,4 +1,4 @@
-import type { SourceConfig } from "../src/types.ts";
+import type { SourceConfig } from "../lib/types.ts";
 
 // Source list. weight: how much one appearance moves hotness (official 3, strong community 2, general 1).
 // URLs marked "verify" have not been fetched yet; the first real run reports any that fail in sources.last_error.

@@ -1,6 +1,6 @@
 // Push one link into the inbox, the same way the Grok bot or the admin will.
 // Usage: npm run submit -- <url> "<title>" [lang]
-import { connect, migrate } from "../src/lib/db.ts";
+import { connect, migrate } from "../lib/db.ts";
 
 const [url, title, lang] = process.argv.slice(2);
 if (!url) {

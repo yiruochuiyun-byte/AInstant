@@ -1,0 +1,19 @@
+{
+  "_doc": "Names kept as-is in every language, plus fixed translations for recurring terms. The translator gets this list with every request.",
+  "keep": [
+    "OpenAI", "Anthropic", "Google", "Google DeepMind", "Meta", "Microsoft", "NVIDIA", "Apple", "Amazon", "xAI",
+    "Mistral", "DeepSeek", "Qwen", "Alibaba", "Moonshot AI", "Kimi", "Zhipu", "GLM", "MiniMax", "ByteDance", "Doubao", "Baidu", "ERNIE", "Tencent", "Hunyuan",
+    "ChatGPT", "GPT", "Claude", "Gemini", "Gemma", "Llama", "Grok", "Copilot", "Cursor", "Hugging Face", "GitHub", "OpenRouter",
+    "open weights", "SWE-bench", "API", "token"
+  ],
+  "terms": {
+    "zh": {
+      "open weights": "开放权重",
+      "speech-to-speech": "语音到语音",
+      "benchmark": "基准测试",
+      "inference": "推理",
+      "fine-tuning": "微调",
+      "agent": "智能体"
+    }
+  }
+}

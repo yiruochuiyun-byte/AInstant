@@ -1,5 +1,5 @@
 // Print the current front page: events by hotness with their timelines.
-import { connect } from "../src/lib/db.ts";
+import { connect } from "../lib/db.ts";
 
 const db = await connect();
 const events = await db.query<{ id: number; title_en: string; why_en: string | null; hotness: number; status: string; credibility: string; item_count: number; source_count: number }>(

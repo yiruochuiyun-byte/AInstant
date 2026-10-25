@@ -1,9 +1,9 @@
 // End to end on fixtures: in-memory Postgres (PGlite + pgvector), mock LLM and embeddings.
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { connect, migrate } from "../src/lib/db.ts";
-import { mockBrain } from "../src/pipeline/brain.ts";
-import { runOnce } from "../src/run.ts";
+import { connect, migrate } from "../lib/db.ts";
+import { mockBrain } from "../pipeline/brain.ts";
+import { runOnce } from "../pipeline/run.ts";
 import { SOURCES } from "../config/sources.ts";
 
 process.env.AINSTANT_OFFLINE = "1";
@@ -49,9 +49,15 @@ test("pipeline turns fixtures into ranked events", async () => {
   assert.ok(or.some((r) => /price cut/.test(r.title)));
   assert.ok(or.some((r) => /now on OpenRouter/.test(r.title)));
 
-  // A second run with the same data adds nothing.
+  // Visible events are translated; disputed ones wait for review first.
+  const zh = await db.query<{ entity_id: number }>(`select entity_id from translations where entity_type = 'event' and field = 'title' and lang = 'zh'`);
+  assert.ok(zh.some((r) => r.entity_id === kestrel.id));
+  assert.ok(!zh.some((r) => r.entity_id === orca.id));
+
+  // A second run with the same data adds nothing and translates nothing again.
   const again = await runOnce(db, mockBrain, SOURCES, NOW);
   assert.equal(again.ingested.inserted, 0);
   assert.equal(again.classified.classified, 0);
+  assert.equal(again.translated, 0);
   await db.close();
 });
