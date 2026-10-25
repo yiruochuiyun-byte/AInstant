@@ -1,0 +1,6 @@
+[
+  {"url": "https://x.com/lumenlabs/status/1001", "title": "Lumen Labs announces Orca-S2S, a real-time speech-to-speech model with 180 ms latency and open weights under Apache 2.0", "author": "lumenlabs", "publishedAt": "2026-10-24T15:00:00Z", "discussionUrl": "https://x.com/lumenlabs/status/1001"},
+  {"url": "https://weibo.com/123456/OrcaS2S", "title": "Lumen Labs 发布 Orca-S2S 语音对语音模型，实测中文效果一般", "lang": "zh", "publishedAt": "2026-10-24T18:00:00Z", "discussionUrl": "https://weibo.com/123456/OrcaS2S"},
+  {"url": "https://x.com/evalcritic/status/1002", "title": "Orca-S2S latency claims look cherry-picked, independent test of Lumen Labs model shows 600 ms on consumer GPUs", "author": "evalcritic", "publishedAt": "2026-10-24T22:00:00Z", "discussionUrl": "https://x.com/evalcritic/status/1002"},
+  {"url": "https://x.com/lumenlabs/status/1003", "title": "Lumen Labs responds to Orca-S2S latency questions: 180 ms figure measured on H100, publishes benchmark script", "author": "lumenlabs", "publishedAt": "2026-10-25T03:00:00Z", "discussionUrl": "https://x.com/lumenlabs/status/1003"}
+]

@@ -1,0 +1,5 @@
+{"data": [
+  {"id": "acme/stable-chat", "name": "Acme: Stable Chat", "created": 1785000000, "context_length": 128000, "pricing": {"prompt": "0.000001", "completion": "0.000002"}},
+  {"id": "lumenlabs/orca-chat", "name": "Lumen Labs: Orca Chat", "created": 1790000000, "context_length": 64000, "pricing": {"prompt": "0.0000005", "completion": "0.0000015"}},
+  {"id": "kestrel/kestrel-coder-32b", "name": "Kestrel: Kestrel-Coder 32B", "created": 1792886400, "context_length": 131072, "pricing": {"prompt": "0.0000002", "completion": "0.0000006"}}
+]}

@@ -1,0 +1,5 @@
+[
+  {"url": "https://www.lumenlabs.ai/blog/orca-s2s/?utm_source=reddit", "title": "Lumen Labs just dropped Orca-S2S with open weights", "publishedAt": "2026-10-24T15:40:00Z", "engagement": 1200, "discussionUrl": "https://www.reddit.com/r/LocalLLaMA/comments/x1/lumen_labs_orcas2s"},
+  {"url": "https://www.reddit.com/r/LocalLLaMA/comments/x2/tested_orcas2s", "title": "Tested the Orca-S2S model on a 4090: 580 ms latency, English great, Mandarin weak", "excerpt": "Hands-on numbers from my setup.", "publishedAt": "2026-10-24T20:00:00Z", "engagement": 640, "discussionUrl": "https://www.reddit.com/r/LocalLLaMA/comments/x2/tested_orcas2s"},
+  {"url": "https://huggingface.co/kestrel/Kestrel-Coder-32B", "title": "Kestrel-Coder 32B released: open coding model tops SWE-bench among open weights", "publishedAt": "2026-10-25T01:00:00Z", "engagement": 900, "discussionUrl": "https://www.reddit.com/r/LocalLLaMA/comments/x3/kestrelcoder_32b"}
+]
