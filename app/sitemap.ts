@@ -11,10 +11,11 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const events = await db.query<{ slug: string; updated_at: Date }>(
     `select slug, updated_at from events where ${VISIBLE} and slug is not null order by updated_at desc limit 5000`,
   );
+  const weeks = await db.query<{ week: string; approved_at: Date }>(`select week, approved_at from weeklies where status = 'approved' order by week desc`);
   const entry = (path: string, lastModified?: Date) => ({
     url: `${SITE_URL}/en${path}`,
     lastModified,
     alternates: { languages: Object.fromEntries(LANGS.map((l) => [l, `${SITE_URL}/${l}${path}`])) },
   });
-  return [entry(""), entry("/latest"), entry("/prices"), ...CATEGORIES.map((c) => entry(`/t/${c}`)), ...events.map((e) => entry(`/e/${e.slug}`, e.updated_at))];
+  return [entry(""), entry("/latest"), entry("/prices"), entry("/w"), ...weeks.map((w) => entry(`/w/${w.week}`, w.approved_at)), ...CATEGORIES.map((c) => entry(`/t/${c}`)), ...events.map((e) => entry(`/e/${e.slug}`, e.updated_at))];
 }

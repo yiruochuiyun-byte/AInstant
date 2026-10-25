@@ -92,6 +92,31 @@ export default async function Admin({ searchParams }: PageProps<"/admin">) {
     );
   }
 
+  if (view === "weekly") {
+    const issues = await db.query<{ week: string; status: string; top: number; approved_at: Date | null }>(
+      `select week, status, cardinality(top_ids) as top, approved_at from weeklies order by week desc limit 30`,
+    );
+    return (
+      <>
+        <h1>Weekly</h1>
+        <p className="note">The pipeline builds a draft every Monday (UTC) for the week that just ended. Nothing is published or mailed until you publish it.</p>
+        <table>
+          <thead><tr><th>Week</th><th>Status</th><th>Top stories</th><th></th></tr></thead>
+          <tbody>
+            {issues.map((w) => (
+              <tr key={w.week}>
+                <td>{w.week}</td>
+                <td>{w.status}{w.approved_at ? ` · ${new Date(w.approved_at).toISOString().slice(0, 16).replace("T", " ")} UTC` : ""}</td>
+                <td>{w.top}</td>
+                <td><Link href={`/admin/w/${w.week}`}>{w.status === "draft" ? "Review" : "Open"}</Link></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </>
+    );
+  }
+
   if (view === "live") {
     const live = await db.query<Row>(`select ${cols} from events where status in ('auto', 'approved') order by pinned desc, hotness desc limit 50`);
     return (

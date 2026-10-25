@@ -9,6 +9,7 @@ export interface Brain {
   sameEvent: typeof llm.sameEvent;
   summarizeEvent: typeof llm.summarizeEvent;
   translate: typeof llm.translate;
+  weeklyIntro: typeof llm.weeklyIntro;
   embed: typeof embed;
   /** Cosine similarity cut-offs for clustering; see cluster.ts. Tune on a week of real data. */
   thresholds: { join: number; check: number };
@@ -19,6 +20,7 @@ export const realBrain: Brain = {
   sameEvent: llm.sameEvent,
   summarizeEvent: llm.summarizeEvent,
   translate: llm.translate,
+  weeklyIntro: llm.weeklyIntro,
   embed,
   thresholds: { join: 0.86, check: 0.7 },
 };
@@ -29,6 +31,7 @@ export const mockBrain: Brain = {
   sameEvent: mock.mockSameEvent,
   summarizeEvent: mock.mockSummarizeEvent,
   translate: mock.mockTranslate,
+  weeklyIntro: mock.mockWeeklyIntro,
   embed: mock.mockEmbed,
   thresholds: { join: 0.6, check: 0.2 },
 };

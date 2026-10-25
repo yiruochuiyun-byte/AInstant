@@ -7,8 +7,8 @@ import { asLang } from "../../../lib/lang.ts";
 import { SITE_URL } from "../../../config/site.ts";
 
 const CONFIRM: Record<string, { subject: string; body: string }> = {
-  en: { subject: "Confirm your AInstant subscription", body: "Click to confirm your daily AInstant email:" },
-  zh: { subject: "确认订阅 AInstant", body: "点击确认订阅 AInstant 每日邮件：" },
+  en: { subject: "Confirm your AInstant subscription", body: "Click to confirm your AInstant subscription:" },
+  zh: { subject: "确认订阅 AInstant", body: "点击确认订阅 AInstant：" },
 };
 
 /** Double opt-in: store unconfirmed, email a confirmation link. Re-subscribing re-sends the link. */
@@ -21,14 +21,15 @@ export async function subscribe(form: FormData) {
   } catch {
     tz = "UTC";
   }
+  const frequency = form.get("frequency") === "weekly" ? "weekly" : "daily";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) redirect(`/${lang}/subscribe?error=email`);
 
   const db = await getDb();
   const [row] = await db.query<{ token: string }>(
-    `insert into subscribers (email, lang, timezone, token) values ($1, $2, $3, $4)
-     on conflict (email) do update set lang = excluded.lang, timezone = excluded.timezone, unsubscribed_at = null
+    `insert into subscribers (email, lang, timezone, token, frequency) values ($1, $2, $3, $4, $5)
+     on conflict (email) do update set lang = excluded.lang, timezone = excluded.timezone, frequency = excluded.frequency, unsubscribed_at = null
      returning token`,
-    [email, lang, tz, randomBytes(18).toString("base64url")],
+    [email, lang, tz, randomBytes(18).toString("base64url"), frequency],
   );
   const url = `${SITE_URL}/api/confirm?token=${row.token}`;
   const c = CONFIRM[lang] ?? CONFIRM.en;

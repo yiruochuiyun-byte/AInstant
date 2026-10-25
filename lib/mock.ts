@@ -77,3 +77,7 @@ export async function mockEmbed(texts: string[]): Promise<number[][]> {
 export async function mockTranslate(req: { lang: string; texts: { key: string; text: string }[] }): Promise<Record<string, string>> {
   return Object.fromEntries(req.texts.map((t) => [t.key, `[${req.lang}] ${t.text}`]));
 }
+
+export async function mockWeeklyIntro(i: { stories: { title: string }[] }): Promise<string> {
+  return `This week: ${i.stories.slice(0, 3).map((s) => s.title).join("; ")}.`;
+}

@@ -155,3 +155,33 @@ ol.news .meta { display: flex; gap: 8px; margin-top: 2px; }
 .topic.wide ol.news { columns: 2 340px; column-gap: 28px; }
 .topic.wide ol.news li { break-inside: avoid; }
 .topic-chart { margin: 8px 0 12px; }
+
+/* ---------- Weekly ---------- */
+.weekly h2 { font-size: 18px; margin: 28px 0 8px; }
+.weekly .lede { font-size: 17px; line-height: 1.55; margin: 14px 0 4px; }
+ol.top-stories { padding-left: 1.4em; margin: 0; }
+ol.top-stories li { padding: 10px 0 12px; border-bottom: 1px solid var(--line); }
+ol.top-stories li::marker { font-weight: 700; color: var(--accent); }
+ol.top-stories h3 { font-size: 18px; line-height: 1.35; margin: 0 0 4px; }
+ol.top-stories h3 a { text-decoration: none; }
+ol.top-stories h3 a:hover { text-decoration: underline; }
+.weekly-grid { display: grid; grid-template-columns: 1fr; gap: 0 24px; }
+@media (min-width: 720px) { .weekly-grid { grid-template-columns: 1fr 1fr; } .weekly-grid section:last-child:nth-child(odd) { grid-column: 1 / -1; } }
+ul.plain { list-style: none; padding: 0; margin: 0; }
+ul.plain li { padding: 5px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+ul.also li a { text-decoration: none; }
+ul.also li a:hover { text-decoration: underline; }
+.meta-inline { color: var(--muted); font-size: 12.5px; }
+table.week-bars { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.week-bars th { text-align: left; font-weight: 500; padding: 4px 8px 4px 0; white-space: nowrap; width: 1%; }
+table.week-bars td { padding: 4px 0; }
+table.week-bars td.num { text-align: right; white-space: nowrap; padding-left: 8px; width: 1%; font-variant-numeric: tabular-nums; }
+.week-bars .bar { display: block; height: 7px; border-radius: 3px; min-width: 2px; }
+.week-bars .bar.cur, .key.cur { background: var(--fg); opacity: 0.75; }
+.week-bars .bar.prev, .key.prev { background: var(--bar-prev); margin-top: 2px; }
+.key { display: inline-block; width: 10px; height: 7px; border-radius: 2px; margin: 0 2px 0 8px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.tags .chip { text-decoration: none; font-size: 13px; }
+.issue-nav { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin: 28px 0 0; font-size: 14px; }
+fieldset.choice { border: 1px solid var(--line); border-radius: 6px; display: grid; gap: 6px; }
+fieldset.choice input { width: auto; }

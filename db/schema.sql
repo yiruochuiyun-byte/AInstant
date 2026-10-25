@@ -198,3 +198,24 @@ create table if not exists meta (
   key   text primary key,
   value text not null
 );
+
+-- Weekly edition. Built by the pipeline on Monday for the ISO week that just ended, reviewed in the admin, then mailed.
+-- Story titles are read live from events (so corrections show); the rest is frozen when the issue is built.
+alter table events add column if not exists peak_hotness real not null default 0;
+create table if not exists weeklies (
+  id          bigserial primary key,
+  week        text unique not null,           -- ISO week, e.g. "2026-W43"
+  starts_at   timestamptz not null,           -- Monday 00:00 UTC
+  ends_at     timestamptz not null,           -- next Monday 00:00 UTC
+  status      text not null default 'draft',  -- draft | approved
+  intro_en    text,                           -- LLM-written overview, editable in the admin
+  top_ids     bigint[] not null default '{}', -- top stories by peak heat, in order
+  more_ids    bigint[] not null default '{}', -- "also this week"
+  stats       jsonb not null default '{}',    -- section counts, rising tags, new models
+  approved_at timestamptz,
+  created_at  timestamptz not null default now()
+);
+
+-- daily: daily email plus the weekly issue on its day; weekly: the weekly issue only.
+alter table subscribers add column if not exists frequency text not null default 'daily';
+alter table subscribers add column if not exists last_weekly text;

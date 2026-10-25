@@ -49,7 +49,7 @@ export async function rank(db: Db, now = new Date()): Promise<number> {
       hoursSinceLast: hours(r.last),
       hoursSinceFirst: hours(r.first),
     });
-    await db.query(`update events set hotness = $2 where id = $1`, [r.id, h]);
+    await db.query(`update events set hotness = $2, peak_hotness = greatest(peak_hotness, $2) where id = $1`, [r.id, h]);
   }
   await db.query(`update events set hotness = 0 where hotness > 0 and last_item_at <= $1::timestamptz - interval '72 hours'`, [now]);
   return rows.length;

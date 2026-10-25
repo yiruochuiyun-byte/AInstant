@@ -3,6 +3,8 @@
 import { connect, migrate } from "../lib/db.ts";
 import { syncModels } from "../pipeline/models.ts";
 import { slugify } from "../pipeline/events.ts";
+import { buildWeekly, translateWeeklies } from "../pipeline/weekly.ts";
+import { mockBrain } from "../pipeline/brain.ts";
 
 if (process.env.DATABASE_URL) throw new Error("demo data is for local databases only");
 process.env.AINSTANT_OFFLINE = "1";
@@ -67,8 +69,8 @@ async function addEvent(cat: string, title: string, entities: string[], type: st
   const first = new Date(now - hoursAgo * 3600_000);
   const last = new Date(Math.min(now, first.getTime() + rnd() * 20 * 3600_000));
   const [e] = await db.query<{ id: number }>(
-    `insert into events (title_en, why_en, category, item_type, tags, credibility, entities, hotness, status, has_controversy, item_count, source_count, first_seen_at, last_item_at)
-     values ($1, $2, $3, $4, $5, 'media', $6, $7, 'auto', $8, $9, $9, $10, $11) returning id`,
+    `insert into events (title_en, why_en, category, item_type, tags, credibility, entities, hotness, peak_hotness, status, has_controversy, item_count, source_count, first_seen_at, last_item_at)
+     values ($1, $2, $3, $4, $5, 'media', $6, $7, $7, 'auto', $8, $9, $9, $10, $11) returning id`,
     [title, "Demo story (fictional).", cat, type, tags, entities, rnd() * 10, /question|report|exposure|jailbreak/i.test(title), 1 + Math.floor(rnd() * 6), first, last],
   );
   await db.query(`update events set slug = $2 where id = $1`, [e.id, slugify(title, e.id)]);
@@ -95,5 +97,11 @@ for (const m of media) {
   await addEvent("models", `${m.creator} releases ${m.name}`, [m.creator, m.name], "launch", daysAgo * 24 + 1, []);
 }
 await syncModels(db, new Date(), true);
-console.log(`demo: ${made} fictional stories`);
+// Last week's issue, published, so /w has something to show.
+const week = await buildWeekly(db, mockBrain);
+if (week) {
+  await db.query(`update weeklies set status = 'approved', approved_at = now() where week = $1`, [week]);
+  await translateWeeklies(db, mockBrain);
+}
+console.log(`demo: ${made} fictional stories, weekly ${week}`);
 await db.close();

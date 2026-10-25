@@ -29,6 +29,15 @@ export default async function Subscribe({ params, searchParams }: PageProps<"/[l
             <input type="email" name="email" required autoComplete="email" />
           </label>
           <TimezoneInput label={t.timezone} />
+          <fieldset className="choice">
+            <legend>{t.frequency}</legend>
+            <label>
+              <input type="radio" name="frequency" value="daily" defaultChecked={q.frequency !== "weekly"} /> {t.freqDaily}
+            </label>
+            <label>
+              <input type="radio" name="frequency" value="weekly" defaultChecked={q.frequency === "weekly"} /> {t.freqWeekly}
+            </label>
+          </fieldset>
           <button type="submit">{t.subscribeButton}</button>
           {q.error && <p className="note">{t.email} ✕</p>}
         </form>

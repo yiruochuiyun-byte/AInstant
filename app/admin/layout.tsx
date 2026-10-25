@@ -14,6 +14,7 @@ export default function AdminLayout({ children }: LayoutProps<"/admin">) {
             <nav className="main">
               <Link href="/admin">Queue</Link>
               <Link href="/admin?view=live">Live</Link>
+              <Link href="/admin?view=weekly">Weekly</Link>
               <Link href="/admin?view=sources">Sources</Link>
               <Link href="/en">Site ↗</Link>
             </nav>

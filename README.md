@@ -30,6 +30,9 @@ One repo, one `package.json`:
    language models with the Intelligence and Agentic indices and release dates; image, video and voice models with arena Elo.
    The free media boards have no release dates, so those models are dated from our first launch story that names them (or the day they first appear on a board after the first import); undated models are counted, not plotted.
 
+9. **Weekly** (`pipeline/weekly.ts`, Mondays UTC): a draft issue for the ISO week that just ended: top 5 stories by peak heat (`events.peak_hotness`), 10 more, section counts vs the week before, rising tags, models released that week,
+   and a 2–3 sentence overview from one Haiku call (plus one translation call per language). Nothing is public or mailed until an editor publishes it in Admin → Weekly.
+
 Pushed sources (the Grok bot watching X, admin submissions) land in the `inbox` table via `POST /api/ingest`
 (`Authorization: Bearer $INGEST_TOKEN`, JSON `{url, title, note, author, lang}` or an array).
 
@@ -40,10 +43,11 @@ Pushed sources (the Grok bot watching X, admin submissions) land in the `inbox` 
   Trends: new stories per section per day and rising tags. Safety: incident strip. Platforms: price changes. Others: stories per day.
 - `/[lang]/t/[section]`: one section's chart and all its stories from the last 14 days. `/[lang]/latest`: everything by heat, with filters by section, type and tag. `/` redirects to `/en`; a banner offers the reader's browser language (no IP redirects). Every page has hreflang alternates; `sitemap.xml` lists all editions.
 - `/[lang]/e/[slug]`: event timeline with source, role, fact/allegation/opinion and credibility labels, links to originals, public corrections log. X posts use X's embed only after the reader opts in.
+- `/[lang]/w` and `/[lang]/w/<year>-W<week>`: published weekly issues.
 - `/[lang]/prices`: OpenRouter prices and recent changes.
-- `/[lang]/subscribe`: double opt-in; the digest goes out at 8:00 in the subscriber's time zone (`npm run digest`, hourly). One-click unsubscribe.
+- `/[lang]/subscribe`: double opt-in; daily, or weekly only. Emails go out at 8:00 in the subscriber's time zone (`npm run digest`, hourly). On the first morning after a weekly issue is published (within 3 days) everyone gets the weekly instead of that day's daily. One-click unsubscribe.
 - `/[lang]/rss.xml` (`?category=models` for one section).
-- `/admin` (HTTP basic auth, `ADMIN_PASSWORD`): review queue, approve/hide/pin, edit headline (logged publicly), split items into new events, merge events, source health, manual link submission.
+- `/admin` (HTTP basic auth, `ADMIN_PASSWORD`): weekly drafts (edit overview, drop stories, rebuild, publish), review queue, approve/hide/pin, edit headline (logged publicly), split items into new events, merge events, source health, manual link submission.
 - Sponsored placements come from the `sponsors` table (per language) and are always labelled.
 
 ## Commands

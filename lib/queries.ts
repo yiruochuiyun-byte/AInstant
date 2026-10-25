@@ -263,3 +263,73 @@ export async function getIncidents(lang: Lang, days = 30): Promise<Incident[]> {
     [lang, days],
   );
 }
+
+// ---------- Weekly ----------
+
+/** Visible events by id, in the given order (a story hidden later drops out). */
+export async function getEventsById(lang: Lang, ids: (number | string)[]): Promise<EventCard[]> {
+  if (!ids.length) return [];
+  const db = await getDb();
+  const rows = await db.query<EventCard>(
+    `select e.id, e.slug, coalesce(tt.text, e.title_en) as title, coalesce(tw.text, e.why_en) as why,
+            e.category, e.item_type, e.tags, e.credibility, e.hotness, e.source_count, e.item_count, e.last_item_at, e.has_controversy
+       from events e ${tr("title", "tt")} ${tr("why", "tw")}
+      where e.${VISIBLE} and e.slug is not null and e.id = any($2::bigint[])`,
+    [lang, ids.map(Number)],
+  );
+  const byId = new Map(rows.map((r) => [Number(r.id), r]));
+  return ids.map((id) => byId.get(Number(id))).filter((e): e is EventCard => !!e);
+}
+
+export interface WeeklyIssue {
+  id: number;
+  week: string;
+  starts_at: Date;
+  ends_at: Date;
+  status: string;
+  intro: string | null;
+  approved_at: Date | null;
+  top: EventCard[];
+  more: EventCard[];
+  stats: import("../pipeline/weekly.ts").WeeklyStats;
+  prev: string | null;
+  next: string | null;
+}
+
+/** One issue. Drafts only when includeDraft (admin preview). */
+export async function getWeekly(lang: Lang, week: string, includeDraft = false): Promise<WeeklyIssue | null> {
+  const db = await getDb();
+  const [w] = await db.query<Omit<WeeklyIssue, "top" | "more" | "prev" | "next"> & { top_ids: number[]; more_ids: number[] }>(
+    `select w.id, w.week, w.starts_at, w.ends_at, w.status, coalesce(ti.text, w.intro_en) as intro, w.approved_at, w.top_ids, w.more_ids, w.stats
+       from weeklies w ${tr("intro", "ti", "weekly", "w.id")}
+      where w.week = $2 and ($3 or w.status = 'approved')`,
+    [lang, week, includeDraft],
+  );
+  if (!w) return null;
+  const [top, more, [prev], [next]] = await Promise.all([
+    getEventsById(lang, w.top_ids),
+    getEventsById(lang, w.more_ids),
+    db.query<{ week: string }>(`select week from weeklies where status = 'approved' and week < $1 order by week desc limit 1`, [week]),
+    db.query<{ week: string }>(`select week from weeklies where status = 'approved' and week > $1 order by week limit 1`, [week]),
+  ]);
+  const stats = typeof w.stats === "string" ? JSON.parse(w.stats) : w.stats;
+  return { ...w, stats, top, more, prev: prev?.week ?? null, next: next?.week ?? null };
+}
+
+export interface WeeklyListItem {
+  week: string;
+  starts_at: Date;
+  intro: string | null;
+  status: string;
+}
+
+export async function listWeeklies(lang: Lang, includeDraft = false, limit = 60): Promise<WeeklyListItem[]> {
+  const db = await getDb();
+  return db.query<WeeklyListItem>(
+    `select w.week, w.starts_at, coalesce(ti.text, w.intro_en) as intro, w.status
+       from weeklies w ${tr("intro", "ti", "weekly", "w.id")}
+      where $2 or w.status = 'approved'
+      order by w.week desc limit $3`,
+    [lang, includeDraft, limit],
+  );
+}

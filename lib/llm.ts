@@ -133,3 +133,23 @@ export async function translate(req: TranslateRequest): Promise<Record<string, s
   const out = await ask(system, JSON.stringify(req), Translations);
   return Object.fromEntries(out.translations.map((t) => [t.key, t.text]));
 }
+
+// ---------- 5. Weekly issue overview ----------
+
+const WeeklyIntro = z.object({ intro_en: z.string() });
+
+export interface WeeklyIntroInput {
+  week: string;
+  stories: { title: string; why: string | null; disputed: boolean }[];
+  new_models: string[];
+  rising_tags: string[];
+}
+
+const WEEKLY_SYSTEM = `You write the opening paragraph of AInstant Weekly, a neutral English roundup of the week in AI.
+- intro_en: 2-3 sentences, at most 70 words, naming the week's biggest developments from the given stories.
+- Only use facts in the input. If a story is disputed, say who claims what ("users report", "X says"); never state an allegation as fact.
+- No hype, no loaded words, no predictions, no greeting. Keep product, model and company names exactly as written.`;
+
+export async function weeklyIntro(input: WeeklyIntroInput): Promise<string> {
+  return (await ask(WEEKLY_SYSTEM, JSON.stringify(input), WeeklyIntro)).intro_en;
+}

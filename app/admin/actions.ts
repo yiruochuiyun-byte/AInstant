@@ -121,3 +121,49 @@ export async function submitLink(form: FormData) {
   ]);
   refresh();
 }
+
+// ---------- Weekly ----------
+
+const weekOf = (form: FormData) => String(form.get("week") ?? "");
+
+/** Publish the issue; subscribers get it at their next 8:00 within 3 days. */
+export async function approveWeekly(form: FormData) {
+  const db = await getDb();
+  await db.query(`update weeklies set status = 'approved', approved_at = coalesce(approved_at, now()) where week = $1`, [weekOf(form)]);
+  refresh();
+}
+
+export async function unpublishWeekly(form: FormData) {
+  const db = await getDb();
+  await db.query(`update weeklies set status = 'draft' where week = $1`, [weekOf(form)]);
+  refresh();
+}
+
+export async function editWeeklyIntro(form: FormData) {
+  const intro = String(form.get("intro_en") ?? "").trim() || null;
+  const db = await getDb();
+  await db.query(`update weeklies set intro_en = $2 where week = $1`, [weekOf(form), intro]);
+  refresh();
+}
+
+/** Drop a story from the issue; the first "also this week" story moves up when a top story goes. */
+export async function dropWeeklyStory(form: FormData) {
+  const id = Number(form.get("event_id"));
+  const db = await getDb();
+  await db.query(
+    `update weeklies set
+       top_ids = case when $2 = any(top_ids) then array_remove(top_ids, $2) || coalesce(more_ids[1:1], '{}') else top_ids end,
+       more_ids = case when $2 = any(top_ids) then coalesce(more_ids[2:], '{}') else array_remove(more_ids, $2) end
+     where week = $1`,
+    [weekOf(form), id],
+  );
+  refresh();
+}
+
+/** Throw the draft away; the next pipeline run (within 10 minutes) builds it again from current data. */
+export async function rebuildWeekly(form: FormData) {
+  const db = await getDb();
+  await db.query(`delete from weeklies where week = $1 and status = 'draft'`, [weekOf(form)]);
+  refresh();
+  redirect(`/admin?view=weekly`);
+}
