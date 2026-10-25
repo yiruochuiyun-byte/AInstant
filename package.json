@@ -13,7 +13,7 @@
     "build": "next build",
     "start": "next start",
     "digest": "node --env-file-if-exists=.env pipeline/digest.ts",
-    "dev:offline": "npm run offline && PGLITE_DIR=.pglite-offline ADMIN_PASSWORD=admin next dev"
+    "dev:offline": "npm run offline && PGLITE_DIR=.pglite-offline node scripts/demo.ts && PGLITE_DIR=.pglite-offline ADMIN_PASSWORD=admin next dev"
   },
   "license": "UNLICENSED",
   "dependencies": {

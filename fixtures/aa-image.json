@@ -1,0 +1,203 @@
+{
+ "tier": "free",
+ "data": [
+  {
+   "id": "fx-image-0",
+   "name": "Orca Image 4.1",
+   "slug": "orca-image-4-1",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "elo": 1209,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-1",
+   "name": "Stable Image 1.3",
+   "slug": "stable-image-1-3",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "elo": 968,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-2",
+   "name": "Stable Image 2.5 Mini",
+   "slug": "stable-image-2-5-mini",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "elo": 1023,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-3",
+   "name": "Kestrel Image 2.3",
+   "slug": "kestrel-image-2-3",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "elo": 1063,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-4",
+   "name": "Juno Image 4.9",
+   "slug": "juno-image-4-9",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "elo": 1170,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-5",
+   "name": "Orca Image 5.4",
+   "slug": "orca-image-5-4",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "elo": 1167,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-6",
+   "name": "Stable Image 1.3",
+   "slug": "stable-image-1-3",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "elo": 1046,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-7",
+   "name": "Gale Image 1.5",
+   "slug": "gale-image-1-5",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "elo": 1062,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-8",
+   "name": "Corvid Image 2.6",
+   "slug": "corvid-image-2-6",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "elo": 1068,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-9",
+   "name": "Gale Image 2.9",
+   "slug": "gale-image-2-9",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "elo": 1122,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-10",
+   "name": "Corvid Image 2.4",
+   "slug": "corvid-image-2-4",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "elo": 1114,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-11",
+   "name": "Tess Image 1.1",
+   "slug": "tess-image-1-1",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "elo": 1001,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-12",
+   "name": "Juno Image 1.1",
+   "slug": "juno-image-1-1",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "elo": 954,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-13",
+   "name": "Kestrel Image 1.4",
+   "slug": "kestrel-image-1-4",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "elo": 1050,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-14",
+   "name": "Juno Image 1.8 Mini",
+   "slug": "juno-image-1-8-mini",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "elo": 1007,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-15",
+   "name": "Tess Image 4.8",
+   "slug": "tess-image-4-8",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "elo": 1220,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-16",
+   "name": "Corvid Image 2.1",
+   "slug": "corvid-image-2-1",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "elo": 1046,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-image-17",
+   "name": "Tess Image 2.7",
+   "slug": "tess-image-2-7",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "elo": 1054,
+   "ci_95": 10
+  }
+ ]
+}

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { asLang, alternates } from "../../lib/lang.ts";
 import { dict } from "../../lib/i18n.ts";
-import { getHeadlines, getSponsor } from "../../lib/queries.ts";
-import { EventCard } from "../../components/EventCard.tsx";
+import { getDailyCounts, getIncidents, getModels, getPrices, getRisingTags, getSponsor, getTopicNews } from "../../lib/queries.ts";
+import { TopicCard, NewsList } from "../../components/TopicCard.tsx";
+import { ModelDots } from "../../components/charts/ModelDots.tsx";
+import { DailyBars, IncidentStrip, PriceChanges, RisingTags, TrendRows } from "../../components/charts/Mini.tsx";
 import { Sponsored } from "../../components/Sponsored.tsx";
-import { CATEGORIES, ITEM_TYPES } from "../../lib/types.ts";
+import type { Lang } from "../../config/site.ts";
 
 export const revalidate = 60;
 
@@ -14,47 +15,55 @@ export async function generateMetadata({ params }: PageProps<"/[lang]">): Promis
   return { alternates: alternates(lang) };
 }
 
-const one = (v: string | string[] | undefined) => (Array.isArray(v) ? v[0] : v);
+// Sections after "models", in page order, and the chart each one gets.
+const SECTIONS = ["tools_apps", "platforms_infra", "open_source", "safety_incident", "industry_applications", "benchmarks"] as const;
 
-export default async function Home({ params, searchParams }: PageProps<"/[lang]">) {
+export default async function Home({ params }: PageProps<"/[lang]">) {
   const lang = asLang((await params).lang);
-  const q = await searchParams;
-  const filters = { category: one(q.category), type: one(q.type), tag: one(q.tag) };
   const t = dict(lang);
-  const [events, sponsor] = await Promise.all([getHeadlines(lang, filters), getSponsor(lang, "home")]);
+  const now = Date.now();
+  const [models, modelNews, counts, tags, incidents, prices, sponsor, ...news] = await Promise.all([
+    getModels(),
+    getTopicNews(lang, "models", 8),
+    getDailyCounts(14),
+    getRisingTags(8),
+    getIncidents(lang, 30),
+    getPrices(),
+    getSponsor(lang, "home"),
+    ...SECTIONS.map((c) => getTopicNews(lang, c, 5)),
+  ]);
 
-  const href = (patch: Partial<typeof filters>) => {
-    const next = { ...filters, ...patch };
-    const qs = new URLSearchParams(Object.entries(next).filter(([, v]) => v) as [string, string][]).toString();
-    return `/${lang}${qs ? `?${qs}` : ""}`;
+  const chartFor = (c: (typeof SECTIONS)[number]) => {
+    if (c === "safety_incident") return <IncidentStrip lang={lang} items={incidents} now={now} />;
+    const bars = counts[c] ? <DailyBars lang={lang} counts={counts[c]} label={t.labels[c]} /> : null;
+    if (c === "platforms_infra") return <>{bars}<PriceChanges lang={lang} rows={prices} /></>;
+    return bars;
   };
 
   return (
-    <>
+    <div className="home">
       <p className="tagline">{t.tagline}</p>
-      <nav className="filters" aria-label={t.category}>
-        <span className="label">{t.category}</span>
-        <Link href={href({ category: undefined })} aria-current={!filters.category ? "true" : undefined}>{t.all}</Link>
-        {CATEGORIES.map((c) => (
-          <Link key={c} href={href({ category: c })} aria-current={filters.category === c ? "true" : undefined}>{t.labels[c]}</Link>
+      <div className="topics">
+        <TopicCard lang={lang} title={t.labels.models} href={`/${lang}/t/models`} wide chart={<ModelDots lang={lang} models={models} now={now} />}>
+          <NewsList lang={lang} items={modelNews} now={now} />
+        </TopicCard>
+        <TopicCard lang={lang} title={t.trends} href={`/${lang}/latest`} chart={<TrendRows lang={lang} counts={counts} />}>
+          <RisingTags lang={lang} tags={tags} />
+        </TopicCard>
+        {SECTIONS.map((c, i) => (
+          <Section key={c} lang={lang} c={c} chart={chartFor(c)} items={news[i]} now={now} />
         ))}
-      </nav>
-      <nav className="filters" aria-label={t.type}>
-        <span className="label">{t.type}</span>
-        <Link href={href({ type: undefined })} aria-current={!filters.type ? "true" : undefined}>{t.all}</Link>
-        {ITEM_TYPES.map((c) => (
-          <Link key={c} href={href({ type: c })} aria-current={filters.type === c ? "true" : undefined}>{t.labels[c]}</Link>
-        ))}
-        {filters.tag && <Link href={href({ tag: undefined })} aria-current="true">#{filters.tag} ×</Link>}
-      </nav>
-      {events.length === 0 && <p className="card">{t.noEvents}</p>}
-      {events.map((e, i) => (
-        <div key={e.id}>
-          <EventCard lang={lang} e={e} />
-          {i === 2 && sponsor && <Sponsored lang={lang} s={sponsor} />}
-        </div>
-      ))}
-      {events.length > 0 && events.length <= 2 && sponsor && <Sponsored lang={lang} s={sponsor} />}
-    </>
+      </div>
+      {sponsor && <Sponsored lang={lang} s={sponsor} />}
+    </div>
+  );
+}
+
+function Section({ lang, c, chart, items, now }: { lang: Lang; c: string; chart: React.ReactNode; items: Awaited<ReturnType<typeof getTopicNews>>; now: number }) {
+  const t = dict(lang);
+  return (
+    <TopicCard lang={lang} title={t.labels[c]} href={`/${lang}/t/${c}`} chart={chart}>
+      <NewsList lang={lang} items={items} now={now} />
+    </TopicCard>
   );
 }

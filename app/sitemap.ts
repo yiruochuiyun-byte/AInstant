@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getDb } from "../lib/db.ts";
 import { LANGS, SITE_URL } from "../config/site.ts";
 import { VISIBLE } from "../lib/queries.ts";
+import { CATEGORIES } from "../lib/types.ts";
 
 export const revalidate = 3600;
 
@@ -15,5 +16,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified,
     alternates: { languages: Object.fromEntries(LANGS.map((l) => [l, `${SITE_URL}/${l}${path}`])) },
   });
-  return [entry(""), entry("/prices"), ...events.map((e) => entry(`/e/${e.slug}`, e.updated_at))];
+  return [entry(""), entry("/latest"), entry("/prices"), ...CATEGORIES.map((c) => entry(`/t/${c}`)), ...events.map((e) => entry(`/e/${e.slug}`, e.updated_at))];
 }

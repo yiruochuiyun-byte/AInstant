@@ -175,3 +175,26 @@ create table if not exists page_snapshots (
   text        text not null,
   captured_at timestamptz not null default now()
 );
+
+-- Model registry for the homepage dot plot. Scores come from third-party leaderboards (Artificial Analysis).
+create table if not exists models (
+  id            bigserial primary key,
+  ext_id        text unique not null,        -- "<source>:<board>:<id>", or "manual:<slug>" for editor-added rows
+  name          text not null,
+  creator       text,
+  modality      text not null,               -- language | image | video | voice
+  released_on   date,                        -- null until known; undated models are not plotted
+  open_weights  boolean,
+  score         real,                        -- language: AA Intelligence Index; image/video/voice: arena Elo
+  agentic_score real,                        -- language only: AA Agentic Index (the "agents" panel)
+  score_source  text,
+  first_seen_at timestamptz not null default now(),
+  updated_at    timestamptz not null default now()
+);
+create index if not exists models_modality_idx on models (modality, released_on);
+
+-- Small key/value store for job bookkeeping (e.g. when the leaderboards were last synced).
+create table if not exists meta (
+  key   text primary key,
+  value text not null
+);

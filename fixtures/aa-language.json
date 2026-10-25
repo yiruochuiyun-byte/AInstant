@@ -1,0 +1,701 @@
+{
+ "tier": "free",
+ "data": [
+  {
+   "id": "fx-language-0",
+   "name": "Orca 1.3 Mini",
+   "slug": "orca-1-3-mini",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "release_date": "2025-06-07",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 14.5,
+    "artificial_analysis_agentic_index": 14.4
+   }
+  },
+  {
+   "id": "fx-language-1",
+   "name": "Halcyon 3.6",
+   "slug": "halcyon-3-6",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "release_date": "2026-03-17",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 50.1,
+    "artificial_analysis_agentic_index": 46
+   }
+  },
+  {
+   "id": "fx-language-2",
+   "name": "Corvid 2.4",
+   "slug": "corvid-2-4",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2025-10-15",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 26.1,
+    "artificial_analysis_agentic_index": 22.2
+   }
+  },
+  {
+   "id": "fx-language-3",
+   "name": "Corvid 2.1 Mini",
+   "slug": "corvid-2-1-mini",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2025-09-15",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 33.3,
+    "artificial_analysis_agentic_index": 29.5
+   }
+  },
+  {
+   "id": "fx-language-4",
+   "name": "Juno 1.7 Mini",
+   "slug": "juno-1-7-mini",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "release_date": "2025-07-27",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 25.4,
+    "artificial_analysis_agentic_index": 27.1
+   }
+  },
+  {
+   "id": "fx-language-5",
+   "name": "Corvid 2.3",
+   "slug": "corvid-2-3",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2025-10-11",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 40.5,
+    "artificial_analysis_agentic_index": 43
+   }
+  },
+  {
+   "id": "fx-language-6",
+   "name": "Kestrel 3.6",
+   "slug": "kestrel-3-6",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "release_date": "2026-03-14",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 40.6,
+    "artificial_analysis_agentic_index": 30.9
+   }
+  },
+  {
+   "id": "fx-language-7",
+   "name": "Kestrel 3.2 Mini",
+   "slug": "kestrel-3-2-mini",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "release_date": "2026-01-24",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 49.8,
+    "artificial_analysis_agentic_index": 46
+   }
+  },
+  {
+   "id": "fx-language-8",
+   "name": "Corvid 1.4 Mini",
+   "slug": "corvid-1-4-mini",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2025-06-26",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 17.5,
+    "artificial_analysis_agentic_index": 16.2
+   }
+  },
+  {
+   "id": "fx-language-9",
+   "name": "Halcyon 3.3 Mini",
+   "slug": "halcyon-3-3-mini",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "release_date": "2026-01-28",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 49.5,
+    "artificial_analysis_agentic_index": 35.7
+   }
+  },
+  {
+   "id": "fx-language-10",
+   "name": "Kestrel 3.6",
+   "slug": "kestrel-3-6",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "release_date": "2026-03-09",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 53.2,
+    "artificial_analysis_agentic_index": 48.2
+   }
+  },
+  {
+   "id": "fx-language-11",
+   "name": "Stable 3.3 Mini",
+   "slug": "stable-3-3-mini",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "release_date": "2026-02-05",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 38.2,
+    "artificial_analysis_agentic_index": 33.2
+   }
+  },
+  {
+   "id": "fx-language-12",
+   "name": "Kestrel 2.8",
+   "slug": "kestrel-2-8",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "release_date": "2025-12-04",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 30,
+    "artificial_analysis_agentic_index": 31.9
+   }
+  },
+  {
+   "id": "fx-language-13",
+   "name": "Gale 1.5",
+   "slug": "gale-1-5",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "release_date": "2025-07-03",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 26,
+    "artificial_analysis_agentic_index": 23.6
+   }
+  },
+  {
+   "id": "fx-language-14",
+   "name": "Halcyon 2.2",
+   "slug": "halcyon-2-2",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "release_date": "2025-09-20",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 27.4,
+    "artificial_analysis_agentic_index": 26.9
+   }
+  },
+  {
+   "id": "fx-language-15",
+   "name": "Kestrel 2.6",
+   "slug": "kestrel-2-6",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "release_date": "2025-11-07",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 29.9,
+    "artificial_analysis_agentic_index": 25.6
+   }
+  },
+  {
+   "id": "fx-language-16",
+   "name": "Tess 1.4 Mini",
+   "slug": "tess-1-4-mini",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "release_date": "2025-06-26",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 29.5,
+    "artificial_analysis_agentic_index": 21.6
+   }
+  },
+  {
+   "id": "fx-language-17",
+   "name": "Gale 4.5 Mini",
+   "slug": "gale-4-5-mini",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "release_date": "2026-06-27",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 63.9,
+    "artificial_analysis_agentic_index": 50.4
+   }
+  },
+  {
+   "id": "fx-language-18",
+   "name": "Corvid 4.5",
+   "slug": "corvid-4-5",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2026-07-03",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 55.5,
+    "artificial_analysis_agentic_index": 41.9
+   }
+  },
+  {
+   "id": "fx-language-19",
+   "name": "Juno 1.4",
+   "slug": "juno-1-4",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "release_date": "2025-06-23",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 30.7,
+    "artificial_analysis_agentic_index": 32.7
+   }
+  },
+  {
+   "id": "fx-language-20",
+   "name": "Tess 3.9 Mini",
+   "slug": "tess-3-9-mini",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "release_date": "2026-04-16",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 41.5,
+    "artificial_analysis_agentic_index": 30.3
+   }
+  },
+  {
+   "id": "fx-language-21",
+   "name": "Orca 2.5 Mini",
+   "slug": "orca-2-5-mini",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "release_date": "2025-10-24",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 37.8,
+    "artificial_analysis_agentic_index": 33.9
+   }
+  },
+  {
+   "id": "fx-language-22",
+   "name": "Corvid 4.1",
+   "slug": "corvid-4-1",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2026-05-07",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 42.9,
+    "artificial_analysis_agentic_index": 36.5
+   }
+  },
+  {
+   "id": "fx-language-23",
+   "name": "Juno 4.7",
+   "slug": "juno-4-7",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "release_date": "2026-07-20",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 44,
+    "artificial_analysis_agentic_index": 46.8
+   }
+  },
+  {
+   "id": "fx-language-24",
+   "name": "Corvid 1.3 Mini",
+   "slug": "corvid-1-3-mini",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2025-06-06",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 29.6,
+    "artificial_analysis_agentic_index": 23
+   }
+  },
+  {
+   "id": "fx-language-25",
+   "name": "Juno 2.6",
+   "slug": "juno-2-6",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "release_date": "2025-11-17",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 29.4,
+    "artificial_analysis_agentic_index": 23.2
+   }
+  },
+  {
+   "id": "fx-language-26",
+   "name": "Stable 2.7 Mini",
+   "slug": "stable-2-7-mini",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "release_date": "2025-11-18",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 40.5,
+    "artificial_analysis_agentic_index": 39.7
+   }
+  },
+  {
+   "id": "fx-language-27",
+   "name": "Corvid 2.9 Mini",
+   "slug": "corvid-2-9-mini",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2025-12-20",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 28.7,
+    "artificial_analysis_agentic_index": 30.6
+   }
+  },
+  {
+   "id": "fx-language-28",
+   "name": "Stable 2.2",
+   "slug": "stable-2-2",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "release_date": "2025-09-20",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 19.5,
+    "artificial_analysis_agentic_index": 20.5
+   }
+  },
+  {
+   "id": "fx-language-29",
+   "name": "Tess 1.0",
+   "slug": "tess-1-0",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "release_date": "2025-05-07",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 24.2,
+    "artificial_analysis_agentic_index": 21
+   }
+  },
+  {
+   "id": "fx-language-30",
+   "name": "Stable 2.0",
+   "slug": "stable-2-0",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "release_date": "2025-09-02",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 25.9,
+    "artificial_analysis_agentic_index": 20.6
+   }
+  },
+  {
+   "id": "fx-language-31",
+   "name": "Gale 1.4",
+   "slug": "gale-1-4",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "release_date": "2025-06-22",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 18.9,
+    "artificial_analysis_agentic_index": 17.9
+   }
+  },
+  {
+   "id": "fx-language-32",
+   "name": "Corvid 3.6",
+   "slug": "corvid-3-6",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "release_date": "2026-03-14",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 42.6,
+    "artificial_analysis_agentic_index": 33.2
+   }
+  },
+  {
+   "id": "fx-language-33",
+   "name": "Kestrel 1.1",
+   "slug": "kestrel-1-1",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "release_date": "2025-05-10",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 21.5,
+    "artificial_analysis_agentic_index": 22.5
+   }
+  },
+  {
+   "id": "fx-language-34",
+   "name": "Juno 4.3",
+   "slug": "juno-4-3",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "release_date": "2026-05-30",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 42.6,
+    "artificial_analysis_agentic_index": 38.3
+   }
+  },
+  {
+   "id": "fx-language-35",
+   "name": "Halcyon 1.9",
+   "slug": "halcyon-1-9",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "release_date": "2025-08-13",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 26.1,
+    "artificial_analysis_agentic_index": 20.2
+   }
+  },
+  {
+   "id": "fx-language-36",
+   "name": "Gale 4.4",
+   "slug": "gale-4-4",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "release_date": "2026-06-19",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 52.8,
+    "artificial_analysis_agentic_index": 48.8
+   }
+  },
+  {
+   "id": "fx-language-37",
+   "name": "Halcyon 1.9",
+   "slug": "halcyon-1-9",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "release_date": "2025-08-19",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 32.5,
+    "artificial_analysis_agentic_index": 23.1
+   }
+  },
+  {
+   "id": "fx-language-38",
+   "name": "Kestrel 2.8 Mini",
+   "slug": "kestrel-2-8-mini",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "release_date": "2025-11-29",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 40.4,
+    "artificial_analysis_agentic_index": 33
+   }
+  },
+  {
+   "id": "fx-language-39",
+   "name": "Stable 2.3",
+   "slug": "stable-2-3",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "release_date": "2025-10-03",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 21.4,
+    "artificial_analysis_agentic_index": 21.6
+   }
+  },
+  {
+   "id": "fx-language-40",
+   "name": "Tess 1.3",
+   "slug": "tess-1-3",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "release_date": "2025-06-09",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 25.1,
+    "artificial_analysis_agentic_index": 27.2
+   }
+  },
+  {
+   "id": "fx-language-41",
+   "name": "Orca 1.9",
+   "slug": "orca-1-9",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "release_date": "2025-08-17",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 31.8,
+    "artificial_analysis_agentic_index": 33.6
+   }
+  },
+  {
+   "id": "fx-language-42",
+   "name": "Orca 4.6 Mini",
+   "slug": "orca-4-6-mini",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "release_date": "2026-07-08",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 45.3,
+    "artificial_analysis_agentic_index": 33.2
+   }
+  },
+  {
+   "id": "fx-language-43",
+   "name": "Orca 2.5",
+   "slug": "orca-2-5",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "release_date": "2025-10-29",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 26.1,
+    "artificial_analysis_agentic_index": 19.7
+   }
+  },
+  {
+   "id": "fx-language-44",
+   "name": "Stable 2.2 Mini",
+   "slug": "stable-2-2-mini",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "release_date": "2025-09-26",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 29.2,
+    "artificial_analysis_agentic_index": 32.1
+   }
+  },
+  {
+   "id": "fx-language-45",
+   "name": "Gale 2.2",
+   "slug": "gale-2-2",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "release_date": "2025-09-27",
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 28,
+    "artificial_analysis_agentic_index": 24.2
+   }
+  },
+  {
+   "id": "fx-l-new1",
+   "name": "Orca 5 (high)",
+   "slug": "orca-5",
+   "release_date": "2026-10-22",
+   "model_creator": {
+    "name": "Lumen Labs"
+   },
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 71.2,
+    "artificial_analysis_agentic_index": 66
+   }
+  },
+  {
+   "id": "fx-l-new1b",
+   "name": "Orca 5 (low)",
+   "slug": "orca-5-low",
+   "release_date": "2026-10-22",
+   "model_creator": {
+    "name": "Lumen Labs"
+   },
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 64,
+    "artificial_analysis_agentic_index": 58.3
+   }
+  },
+  {
+   "id": "fx-l-new2",
+   "name": "Kestrel-Coder 2",
+   "slug": "kestrel-coder-2",
+   "release_date": "2026-10-16",
+   "model_creator": {
+    "name": "Kestrel"
+   },
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 63.5,
+    "artificial_analysis_agentic_index": 69.4
+   }
+  },
+  {
+   "id": "fx-l-new3",
+   "name": "Gale 3 Flash",
+   "slug": "gale-3-flash",
+   "release_date": "2026-10-08",
+   "model_creator": {
+    "name": "Northwind"
+   },
+   "evaluations": {
+    "artificial_analysis_intelligence_index": 52.8,
+    "artificial_analysis_agentic_index": 44.1
+   }
+  }
+ ]
+}

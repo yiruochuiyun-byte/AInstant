@@ -1,6 +1,7 @@
 // Read-side queries shared by the website, RSS and the daily email.
 import { getDb } from "./db.ts";
 import type { Lang } from "../config/site.ts";
+import { normName } from "../pipeline/models.ts";
 
 /** Events readers may see. pending_review (disputed, not yet checked by a human) and hidden stay off the site. */
 export const VISIBLE = `status in ('auto', 'approved')`;
@@ -149,4 +150,116 @@ export async function getSponsor(lang: Lang, placement: "home" | "newsletter"): 
     [lang, placement],
   );
   return s ?? null;
+}
+
+// ---------- Homepage topic cards ----------
+
+export interface TopicNews {
+  id: number;
+  slug: string;
+  title: string;
+  item_type: string | null;
+  has_controversy: boolean;
+  source_count: number;
+  first_seen_at: Date;
+  last_item_at: Date;
+}
+
+/** Latest stories in one section, newest activity first. */
+export async function getTopicNews(lang: Lang, category: string, limit = 6, days = 7): Promise<TopicNews[]> {
+  const db = await getDb();
+  return db.query<TopicNews>(
+    `select e.id, e.slug, coalesce(tt.text, e.title_en) as title, e.item_type, e.has_controversy, e.source_count,
+            e.first_seen_at, e.last_item_at
+       from events e ${tr("title", "tt")}
+      where e.${VISIBLE} and e.slug is not null and e.category = $2 and e.last_item_at > now() - make_interval(days => $3)
+      order by e.pinned desc, e.last_item_at desc
+      limit $4`,
+    [lang, category, days, limit],
+  );
+}
+
+export interface ModelPoint {
+  id: number;
+  name: string;
+  creator: string | null;
+  modality: string;
+  released_on: string | null;
+  score: number | null;
+  agentic_score: number | null;
+  /** A story about this model, when one names it. */
+  slug: string | null;
+}
+
+export async function getModels(): Promise<ModelPoint[]> {
+  const db = await getDb();
+  const rows = await db.query<ModelPoint & { released_on: Date | string | null }>(
+    `select id, name, creator, modality, released_on, score, agentic_score, null as slug from models where score is not null`,
+  );
+  const stories = await db.query<{ slug: string; entities: string[] }>(
+    `select slug, entities from events where ${VISIBLE} and slug is not null and category = 'models' order by first_seen_at desc limit 300`,
+  );
+  const byName = new Map<string, string>();
+  for (const e of stories) for (const x of e.entities) if (!byName.has(normName(x))) byName.set(normName(x), e.slug);
+  return rows.map((r) => ({
+    ...r,
+    released_on: r.released_on ? new Date(r.released_on).toISOString().slice(0, 10) : null,
+    slug: byName.get(normName(r.name)) ?? null,
+  }));
+}
+
+/** New stories per section per day, oldest day first. */
+export async function getDailyCounts(days = 14): Promise<Record<string, number[]>> {
+  const db = await getDb();
+  const rows = await db.query<{ category: string; d: number; n: number }>(
+    `select category, (current_date - first_seen_at::date)::int as d, count(*)::int as n
+       from events where ${VISIBLE} and category is not null and first_seen_at > current_date - $1::int
+      group by 1, 2`,
+    [days - 1],
+  );
+  const out: Record<string, number[]> = {};
+  for (const r of rows) (out[r.category] ??= new Array(days).fill(0))[days - 1 - r.d] = r.n;
+  return out;
+}
+
+export interface RisingTag {
+  tag: string;
+  now: number;
+  before: number;
+}
+
+/** Tags on this week's stories compared with the week before. */
+export async function getRisingTags(limit = 8): Promise<RisingTag[]> {
+  const db = await getDb();
+  return db.query<RisingTag>(
+    `select tag, count(*) filter (where first_seen_at > now() - interval '7 days')::int as now,
+            count(*) filter (where first_seen_at <= now() - interval '7 days')::int as before
+       from events, unnest(tags) as tag
+      where ${VISIBLE} and first_seen_at > now() - interval '14 days'
+      group by tag
+     having count(*) filter (where first_seen_at > now() - interval '7 days') >= 2
+      order by (count(*) filter (where first_seen_at > now() - interval '7 days') - count(*) filter (where first_seen_at <= now() - interval '7 days')) desc, tag
+      limit $1`,
+    [limit],
+  );
+}
+
+export interface Incident {
+  slug: string;
+  title: string;
+  first_seen_at: Date;
+  hotness: number;
+  has_controversy: boolean;
+}
+
+export async function getIncidents(lang: Lang, days = 30): Promise<Incident[]> {
+  const db = await getDb();
+  return db.query<Incident>(
+    `select e.slug, coalesce(tt.text, e.title_en) as title, e.first_seen_at, e.hotness, e.has_controversy
+       from events e ${tr("title", "tt")}
+      where e.${VISIBLE} and e.slug is not null and (e.category = 'safety_incident' or e.item_type = 'incident')
+        and e.first_seen_at > now() - make_interval(days => $2)
+      order by e.first_seen_at`,
+    [lang, days],
+  );
 }

@@ -1,0 +1,181 @@
+{
+ "tier": "free",
+ "data": [
+  {
+   "id": "fx-video-0",
+   "name": "Corvid Video 3.2",
+   "slug": "corvid-video-3-2",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "elo": 1020,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-1",
+   "name": "Halcyon Video 4.1",
+   "slug": "halcyon-video-4-1",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "elo": 1141,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-2",
+   "name": "Kestrel Video 2.2",
+   "slug": "kestrel-video-2-2",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "elo": 962,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-3",
+   "name": "Kestrel Video 1.3 Mini",
+   "slug": "kestrel-video-1-3-mini",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "elo": 920,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-4",
+   "name": "Gale Video 5.3",
+   "slug": "gale-video-5-3",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "elo": 1208,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-5",
+   "name": "Stable Video 4.2",
+   "slug": "stable-video-4-2",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "elo": 1130,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-6",
+   "name": "Stable Video 4.7",
+   "slug": "stable-video-4-7",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "elo": 1073,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-7",
+   "name": "Tess Video 2.5",
+   "slug": "tess-video-2-5",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "elo": 981,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-8",
+   "name": "Kestrel Video 2.1",
+   "slug": "kestrel-video-2-1",
+   "model_creator": {
+    "id": "Kestrel",
+    "name": "Kestrel"
+   },
+   "elo": 1008,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-9",
+   "name": "Halcyon Video 1.8",
+   "slug": "halcyon-video-1-8",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "elo": 1018,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-10",
+   "name": "Halcyon Video 4.8 Mini",
+   "slug": "halcyon-video-4-8-mini",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "elo": 1149,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-11",
+   "name": "Stable Video 2.6 Mini",
+   "slug": "stable-video-2-6-mini",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "elo": 995,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-12",
+   "name": "Halcyon Video 2.4",
+   "slug": "halcyon-video-2-4",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "elo": 987,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-13",
+   "name": "Juno Video 5.1",
+   "slug": "juno-video-5-1",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "elo": 1138,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-14",
+   "name": "Tess Video 2.3",
+   "slug": "tess-video-2-3",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "elo": 965,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-video-15",
+   "name": "Juno Video 2.9",
+   "slug": "juno-video-2-9",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "elo": 1035,
+   "ci_95": 10
+  }
+ ]
+}

@@ -7,6 +7,7 @@ import { cluster } from "./cluster.ts";
 import { refreshEvents } from "./events.ts";
 import { rank } from "./rank.ts";
 import { translateVisible } from "./translate.ts";
+import { syncModels } from "./models.ts";
 import { log } from "../lib/util.ts";
 
 /** One pipeline pass: fetch → dedupe → label → embed → cluster → headline → rank. */
@@ -24,7 +25,9 @@ export async function runOnce(db: Db, brain: Brain, sources = SOURCES, now = new
   const ranked = await rank(db, now);
   const translated = await translateVisible(db, brain);
   log("events", { refreshed, ranked, translated });
-  const stats = { ingested, classified, embedded, clustered, refreshed, ranked, translated };
+  const models = await syncModels(db, now);
+  if (models) log("models", models);
+  const stats = { ingested, classified, embedded, clustered, refreshed, ranked, translated, models };
   await db.query(`update runs set finished_at = now(), stats = $2 where id = $1`, [run.id, JSON.stringify(stats)]);
   return stats;
 }

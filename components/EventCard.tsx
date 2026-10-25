@@ -12,7 +12,7 @@ export function Labels({ lang, e }: { lang: Lang; e: Pick<Card, "category" | "it
       {e.credibility && <span className={`chip cred-${e.credibility}`}>{t.labels[e.credibility]}</span>}
       {e.has_controversy && <span className="chip disputed">{t.labels.criticism}</span>}
       {e.tags.map((tag) => (
-        <Link key={tag} className="chip" href={`/${lang}?tag=${encodeURIComponent(tag)}`}>
+        <Link key={tag} className="chip" href={`/${lang}/latest?tag=${encodeURIComponent(tag)}`}>
           #{tag}
         </Link>
       ))}

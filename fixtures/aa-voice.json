@@ -1,0 +1,159 @@
+{
+ "tier": "free",
+ "data": [
+  {
+   "id": "fx-voice-0",
+   "name": "Tess Voice 1.8",
+   "slug": "tess-voice-1-8",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "elo": 1087,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-1",
+   "name": "Tess Voice 4.3",
+   "slug": "tess-voice-4-3",
+   "model_creator": {
+    "id": "Tessera",
+    "name": "Tessera"
+   },
+   "elo": 1120,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-2",
+   "name": "Stable Voice 1.2",
+   "slug": "stable-voice-1-2",
+   "model_creator": {
+    "id": "Acme AI",
+    "name": "Acme AI"
+   },
+   "elo": 956,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-3",
+   "name": "Orca Voice 4.0",
+   "slug": "orca-voice-4-0",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "elo": 1189,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-4",
+   "name": "Juno Voice 3.9 Mini",
+   "slug": "juno-voice-3-9-mini",
+   "model_creator": {
+    "id": "Juniper Labs",
+    "name": "Juniper Labs"
+   },
+   "elo": 1085,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-5",
+   "name": "Gale Voice 2.7 Mini",
+   "slug": "gale-voice-2-7-mini",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "elo": 1061,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-6",
+   "name": "Gale Voice 4.1 Mini",
+   "slug": "gale-voice-4-1-mini",
+   "model_creator": {
+    "id": "Northwind",
+    "name": "Northwind"
+   },
+   "elo": 1099,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-7",
+   "name": "Orca Voice 2.4",
+   "slug": "orca-voice-2-4",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "elo": 1105,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-8",
+   "name": "Corvid Voice 2.9",
+   "slug": "corvid-voice-2-9",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "elo": 1078,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-9",
+   "name": "Halcyon Voice 1.1",
+   "slug": "halcyon-voice-1-1",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "elo": 1062,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-10",
+   "name": "Corvid Voice 2.5",
+   "slug": "corvid-voice-2-5",
+   "model_creator": {
+    "id": "Corvid Research",
+    "name": "Corvid Research"
+   },
+   "elo": 1034,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-11",
+   "name": "Orca Voice 2.0",
+   "slug": "orca-voice-2-0",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "elo": 1041,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-12",
+   "name": "Halcyon Voice 3.4",
+   "slug": "halcyon-voice-3-4",
+   "model_creator": {
+    "id": "Halcyon",
+    "name": "Halcyon"
+   },
+   "elo": 1072,
+   "ci_95": 10
+  },
+  {
+   "id": "fx-voice-13",
+   "name": "Orca Voice 4.9",
+   "slug": "orca-voice-4-9",
+   "model_creator": {
+    "id": "Lumen Labs",
+    "name": "Lumen Labs"
+   },
+   "elo": 1173,
+   "ci_95": 10
+  }
+ ]
+}

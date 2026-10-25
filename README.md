@@ -26,13 +26,19 @@ One repo, one `package.json`:
 5. **Headline** (`pipeline/events.ts`): changed events get a neutral headline and "why it matters". Events with criticism or allegations go to `pending_review` and stay off the site until approved in the admin. Headlines edited by a human are locked.
 6. **Rank** (`pipeline/rank.ts`): heat = source weights × platform diversity × log engagement × time decay (18 h half-life).
 7. **Translate** (`pipeline/translate.ts`): visible events and their timelines into each language in `config/site.ts`, with `config/glossary.json`; cached by source-text hash.
+8. **Models** (`pipeline/models.ts`, every 12 h): Artificial Analysis leaderboards (free API, `ARTIFICIAL_ANALYSIS_API_KEY`, attribution required) fill the `models` table:
+   language models with the Intelligence and Agentic indices and release dates; image, video and voice models with arena Elo.
+   The free media boards have no release dates, so those models are dated from our first launch story that names them (or the day they first appear on a board after the first import); undated models are counted, not plotted.
 
 Pushed sources (the Grok bot watching X, admin submissions) land in the `inbox` table via `POST /api/ingest`
 (`Authorization: Bearer $INGEST_TOKEN`, JSON `{url, title, note, author, lang}` or an array).
 
 ## Website
 
-- `/en`, `/zh`: front page by heat, filters by section, type and tag. `/` redirects to `/en`; a banner offers the reader's browser language (no IP redirects). Every page has hreflang alternates; `sitemap.xml` lists all editions.
+- `/en`, `/zh`: one card per section, each with a chart and that section's latest stories (newest first, a NEW badge for stories first seen in the last 6 hours).
+  Models: dot plot of release date × leaderboard score in small panels (language, agents, video, image, voice), models from the last 30 days in the accent color.
+  Trends: new stories per section per day and rising tags. Safety: incident strip. Platforms: price changes. Others: stories per day.
+- `/[lang]/t/[section]`: one section's chart and all its stories from the last 14 days. `/[lang]/latest`: everything by heat, with filters by section, type and tag. `/` redirects to `/en`; a banner offers the reader's browser language (no IP redirects). Every page has hreflang alternates; `sitemap.xml` lists all editions.
 - `/[lang]/e/[slug]`: event timeline with source, role, fact/allegation/opinion and credibility labels, links to originals, public corrections log. X posts use X's embed only after the reader opts in.
 - `/[lang]/prices`: OpenRouter prices and recent changes.
 - `/[lang]/subscribe`: double opt-in; the digest goes out at 8:00 in the subscriber's time zone (`npm run digest`, hourly). One-click unsubscribe.
@@ -46,7 +52,7 @@ Pushed sources (the Grok bot watching X, admin submissions) land in the `inbox` 
 npm install
 npm test              # unit tests + end-to-end pipeline run on fixtures (in-memory Postgres, mock LLM)
 npm run offline       # pipeline on fixtures into .pglite-offline, prints the front page
-npm run dev:offline   # same, then the website on http://localhost:3000 (admin password: admin)
+npm run dev:offline   # same, plus fictional demo stories (scripts/demo.ts), then the website on http://localhost:3000 (admin password: admin)
 npm run pipeline      # real run: needs .env (see .env.example)
 npm run digest        # send due daily emails (dry-run logs without RESEND_API_KEY)
 npm run submit -- https://x.com/... "title" [lang]
