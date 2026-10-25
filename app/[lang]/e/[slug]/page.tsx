@@ -5,6 +5,8 @@ import { dict, timeAgo } from "../../../../lib/i18n.ts";
 import { getEvent } from "../../../../lib/queries.ts";
 import { Labels } from "../../../../components/EventCard.tsx";
 import { XEmbed } from "../../../../components/XEmbed.tsx";
+import { entitySlug } from "../../../../lib/entities.ts";
+import Link from "next/link";
 
 export const revalidate = 60;
 
@@ -32,6 +34,14 @@ export default async function EventPage({ params }: PageProps<"/[lang]/e/[slug]"
         <span>{t.sources(ev.source_count)}</span>
         <time dateTime={new Date(ev.last_item_at).toISOString()}>{t.updated(timeAgo(ev.last_item_at, lang))}</time>
       </div>
+      {ev.entities.length > 0 && (
+        <p className="tags event-topics">
+          <span className="meta-inline">{t.topicsIn}:</span>
+          {[...new Map(ev.entities.map((n) => [entitySlug(n), n])).entries()].filter(([s]) => s).map(([s, n]) => (
+            <Link key={s} className="chip" href={`/${lang}/x/${s}`}>{n}</Link>
+          ))}
+        </p>
+      )}
       {ev.why && (
         <p className="why">
           <strong>{t.why}:</strong> {ev.why}

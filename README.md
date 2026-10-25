@@ -43,6 +43,7 @@ Pushed sources (the Grok bot watching X, admin submissions) land in the `inbox` 
   Trends: new stories per section per day and rising tags. Safety: incident strip. Platforms: price changes. Others: stories per day.
 - `/[lang]/t/[section]`: one section's chart and all its stories from the last 14 days. `/[lang]/latest`: everything by heat, with filters by section, type and tag. `/` redirects to `/en`; a banner offers the reader's browser language (no IP redirects). Every page has hreflang alternates; `sitemap.xml` lists all editions.
 - `/[lang]/e/[slug]`: event timeline with source, role, fact/allegation/opinion and credibility labels, links to originals, public corrections log. X posts use X's embed only after the reader opts in.
+- `/[lang]/x` and `/[lang]/x/<slug>`: topic pages, one per company, model or product, built from the names on each story (no extra LLM cost). Stories per week, leaderboard score and price when known, related topics. Spellings and Chinese names are merged in `config/entities.json`; pages with fewer than 3 stories are noindex. Event pages link to their topics.
 - `/[lang]/w` and `/[lang]/w/<year>-W<week>`: published weekly issues.
 - `/[lang]/prices`: OpenRouter prices and recent changes.
 - `/[lang]/subscribe`: double opt-in; daily, or weekly only. Emails go out at 8:00 in the subscriber's time zone (`npm run digest`, hourly). On the first morning after a weekly issue is published (within 3 days) everyone gets the weekly instead of that day's daily. One-click unsubscribe.

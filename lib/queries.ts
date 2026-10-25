@@ -71,6 +71,7 @@ export interface TimelineItem {
 
 export interface EventDetail extends EventCard {
   title_en: string;
+  entities: string[];
   first_seen_at: Date;
   status: string;
   items: TimelineItem[];
@@ -83,7 +84,7 @@ export async function getEvent(lang: Lang, slug: string, includeHidden = false):
   const [ev] = await db.query<EventDetail>(
     `select e.id, e.slug, coalesce(tt.text, e.title_en) as title, e.title_en, coalesce(tw.text, e.why_en) as why,
             e.category, e.item_type, e.tags, e.credibility, e.hotness, e.source_count, e.item_count, e.last_item_at,
-            e.has_controversy, e.first_seen_at, e.status
+            e.has_controversy, e.first_seen_at, e.status, e.entities
        from events e ${tr("title", "tt")} ${tr("why", "tw")}
       where e.slug = $2 ${includeHidden ? "" : `and e.${VISIBLE}`}`,
     [lang, slug],

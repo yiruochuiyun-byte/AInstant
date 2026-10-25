@@ -170,3 +170,29 @@ export function TrendRows({ lang, counts }: { lang: Lang; counts: Record<string,
     </figure>
   );
 }
+
+/** Stories per week, oldest first; the current week is the last bar. */
+export function WeekBars({ lang, counts }: { lang: Lang; counts: number[] }) {
+  const t = dict(lang);
+  const W = 360;
+  const H = 56;
+  const max = Math.max(1, ...counts);
+  const bw = W / counts.length;
+  return (
+    <figure className="mini">
+      <figcaption>{t.storiesPerWeek}</figcaption>
+      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label={`${t.storiesPerWeek}: ${counts.join(", ")}`} className="bars">
+        <line x1={0} x2={W} y1={H - 0.5} y2={H - 0.5} className="grid" />
+        {counts.map((n, i) => {
+          const h = (n / max) * (H - 6);
+          return (
+            <g key={i}>
+              <title>{n}</title>
+              <rect x={i * bw + 2} y={H - h} width={bw - 4} height={Math.max(h, n ? 2 : 0)} rx={2} className={i === counts.length - 1 ? "cur" : "prev"} />
+            </g>
+          );
+        })}
+      </svg>
+    </figure>
+  );
+}

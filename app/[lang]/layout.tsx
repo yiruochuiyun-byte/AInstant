@@ -31,6 +31,7 @@ export default async function LangLayout({ children, params }: LayoutProps<"/[la
             <nav className="main">
               <Link href={`/${lang}`}>{t.home}</Link>
               <Link href={`/${lang}/latest`}>{t.latest}</Link>
+              <Link href={`/${lang}/x`}>{t.topics}</Link>
               <Link href={`/${lang}/w`}>{t.weekly}</Link>
               <Link href={`/${lang}/prices`}>{t.prices}</Link>
               <Link href={`/${lang}/subscribe`}>{t.subscribe}</Link>

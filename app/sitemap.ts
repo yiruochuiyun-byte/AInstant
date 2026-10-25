@@ -3,6 +3,7 @@ import { getDb } from "../lib/db.ts";
 import { LANGS, SITE_URL } from "../config/site.ts";
 import { VISIBLE } from "../lib/queries.ts";
 import { CATEGORIES } from "../lib/types.ts";
+import { listEntities } from "../lib/entities.ts";
 
 export const revalidate = 3600;
 
@@ -17,5 +18,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     lastModified,
     alternates: { languages: Object.fromEntries(LANGS.map((l) => [l, `${SITE_URL}/${l}${path}`])) },
   });
-  return [entry(""), entry("/latest"), entry("/prices"), entry("/w"), ...weeks.map((w) => entry(`/w/${w.week}`, w.approved_at)), ...CATEGORIES.map((c) => entry(`/t/${c}`)), ...events.map((e) => entry(`/e/${e.slug}`, e.updated_at))];
+  return [entry(""), entry("/latest"), entry("/prices"), entry("/w"), entry("/x"), ...(await listEntities(1000)).map((e) => entry(`/x/${e.slug}`)), ...weeks.map((w) => entry(`/w/${w.week}`, w.approved_at)), ...CATEGORIES.map((c) => entry(`/t/${c}`)), ...events.map((e) => entry(`/e/${e.slug}`, e.updated_at))];
 }

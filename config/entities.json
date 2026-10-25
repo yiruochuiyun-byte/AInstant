@@ -1,0 +1,23 @@
+{
+  "_doc": "Topic pages (/[lang]/x/<slug>) group stories by the names the classifier extracts. Map other spellings to one page here: canonical slug -> spellings (any case; Chinese names welcome).",
+  "aliases": {
+    "google-deepmind": ["DeepMind", "Google DeepMind"],
+    "hugging-face": ["HuggingFace", "HF", "Hugging Face"],
+    "xai": ["x.AI", "X AI"],
+    "moonshot-ai": ["Moonshot", "月之暗面"],
+    "zhipu": ["Zhipu AI", "Z.ai", "智谱", "智谱AI"],
+    "deepseek": ["深度求索", "DeepSeek AI"],
+    "alibaba": ["阿里巴巴", "阿里", "Alibaba Cloud", "阿里云"],
+    "qwen": ["通义千问", "千问"],
+    "bytedance": ["字节跳动", "字节"],
+    "doubao": ["豆包"],
+    "baidu": ["百度"],
+    "ernie": ["文心一言", "文心"],
+    "tencent": ["腾讯"],
+    "hunyuan": ["混元", "腾讯混元"],
+    "minimax": ["MiniMax AI", "稀宇科技"],
+    "kimi": ["Kimi Chat"],
+    "meta": ["Meta AI"],
+    "openai": ["Open AI"]
+  }
+}

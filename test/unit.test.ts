@@ -87,3 +87,13 @@ test("page watch: first fetch records, later changes become items", async () => 
   assert.match(item.dedupeKey!, /^https:\/\/x\.dev\/pricing#/);
   await db.close();
 });
+
+test("topic slugs merge spellings", async () => {
+  const { entitySlug } = await import("../lib/entities.ts");
+  assert.equal(entitySlug("Claude Opus 5.5"), "claude-opus-5-5");
+  assert.equal(entitySlug("DeepMind"), "google-deepmind");
+  assert.equal(entitySlug("Google DeepMind"), "google-deepmind");
+  assert.equal(entitySlug("智谱"), "zhipu");
+  assert.equal(entitySlug("Z.ai"), "zhipu");
+  assert.equal(entitySlug("某公司"), "");
+});
